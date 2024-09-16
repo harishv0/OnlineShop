@@ -15,7 +15,6 @@ function App() {
   return (
   <>
     <ToastContainer/>
-    <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Login/>}/>
@@ -26,7 +25,6 @@ function App() {
           <Route path='/cart' element={<Cart/>}/>
         </Routes>
       </BrowserRouter>
-    </div>
   </>
   );
 }
