@@ -20,7 +20,7 @@ import com.example.backend.Service.UserService;
 
 @RestController
 @RequestMapping("api/user")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "https://harishcart.netlify.app")
 public class UserController {
     
     @Autowired

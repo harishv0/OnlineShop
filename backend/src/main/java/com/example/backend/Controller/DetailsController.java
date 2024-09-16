@@ -23,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/details")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://harishcart.netlify.app")
 public class DetailsController {
 
     @Autowired
