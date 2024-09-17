@@ -32,7 +32,7 @@ useEffect(() => {
   const onhandleChange =(e) =>{
     setData({
       ...data,
-      [e.target.name]: e.target.value 
+      [e.target.name] : e.target.name === 'price' ? parseFloat(e.target.value) : e.target.value
     })
   }
   const handleFileClick = () => {
@@ -111,7 +111,7 @@ useEffect(() => {
           </div>
           <input className='upload_product' type="text" placeholder='Product Type' name='type' value={data.type} onChange={onhandleChange} />
           <input className='upload_name' type="text" placeholder='Name' name='name' value={data.name} onChange={onhandleChange} />
-          <input className='upload_price' type="text" placeholder='Price' name='price' value={data.price} onChange={onhandleChange}/>
+          <input className='upload_price' type="number" placeholder='Price' name='price' value={data.price} onChange={onhandleChange}/>
           <input className='upload_description' type="text" placeholder='Description' name='description' value={data.description} onChange={onhandleChange}/>
           <input className='upload_properties' type='text' placeholder='Properties' name='properties' value={data.properties} onChange={onhandleChange}/>
           <button className='upload_button' onClick={handleUpload}>Upload</button>

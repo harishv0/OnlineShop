@@ -13,7 +13,7 @@ public class CrosConfig {
             @Override
             public void addCorsMappings(CorsRegistry corsRegistry){
                 corsRegistry.addMapping("/**")
-                .allowedOrigins("https://harishcart.netlify.app")
+                .allowedOrigins("http://localhost:3000")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*");
             }
