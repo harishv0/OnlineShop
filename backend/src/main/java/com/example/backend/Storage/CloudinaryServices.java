@@ -22,4 +22,12 @@ public class CloudinaryServices {
             "resource_type", "auto"
         )).get("url").toString();
     }
+    
+    public String profileUpload(MultipartFile image, String folderName, String userName) throws IOException{
+        return cloudinary.uploader().upload(image.getBytes(), ObjectUtils.asMap(
+            "folder",folderName,
+            "public_id",userName,
+            "resource_type", "auto"
+        )).get("url").toString();
+    }
 }

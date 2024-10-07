@@ -21,5 +21,6 @@ public class User {
     private String mail;
     private String password;
     private String roles;
+    private String profile;
     private List<String> carts;
 }

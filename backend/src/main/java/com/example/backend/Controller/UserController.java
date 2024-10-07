@@ -1,7 +1,9 @@
 package com.example.backend.Controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,19 +14,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.example.backend.ApiResponse.ApiResponse;
 import com.example.backend.Credentials.Details;
 import com.example.backend.Credentials.User;
+import com.example.backend.Repository.UserRepository;
 import com.example.backend.Service.DetailsService;
 import com.example.backend.Service.UserService;
+import com.example.backend.Storage.CloudinaryServices;
 
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("/api/user")
 @CrossOrigin(origins = "https://harishcart.netlify.app")
 public class UserController {
     
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CloudinaryServices cloudinaryServices;
 
     private ApiResponse<User> response;
 
@@ -139,6 +148,28 @@ public class UserController {
             return ResponseEntity.badRequest().body(response);
         }
     }
+
+    @PostMapping("/profilePhoto")
+    public ResponseEntity<ApiResponse<User>> profilePhoto(@RequestParam("mail") String mail, @RequestParam("image") MultipartFile image) throws IOException{
+        User user = userService.getUser(mail);
+        System.out.println(mail);
+        System.out.println(image);
+        int atIndex = mail.indexOf("@");
+        String folderName = mail.substring(0,atIndex);
+        String profileUrl = cloudinaryServices.profileUpload(image, folderName, UUID.randomUUID().toString());
+        if(user != null){
+            user.setProfile(profileUrl);
+            userService.save(user);
+            response = new ApiResponse<User>(true, "Uploaded", user);
+            return ResponseEntity.ok(response);
+        }else{
+            response = new ApiResponse<User>(false, "Not Uploaded", null);
+            return ResponseEntity.ok(response);
+        }
+        
+        
+    }
+
     
     
 

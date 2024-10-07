@@ -22,7 +22,7 @@ import com.example.backend.Storage.CloudinaryServices;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("api/details")
+@RequestMapping("/api/details")
 @CrossOrigin(origins = "https://harishcart.netlify.app")
 public class DetailsController {
 
